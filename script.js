@@ -63,12 +63,16 @@
   <h1>Malla Curricular Interactiva</h1>
   <div id="malla-container"></div>
   <script>
-    document.addEventListener("DOMContentLoaded", function() {
+    document.addEventListener("DOMContentLoaded", function () {
       const ramos = [
         { nombre: "Inglés I", id: "ingles1", semestre: 1, desbloquea: ["ingles2"] },
         { nombre: "Cálculo I", id: "calculo1", semestre: 1, desbloquea: ["calculo2"] },
         { nombre: "Álgebra I", id: "algebra1", semestre: 1, desbloquea: ["algebra2"] },
         { nombre: "Física I", id: "fisica1", semestre: 1, desbloquea: ["fisica2"] },
+        { nombre: "Inglés II", id: "ingles2", semestre: 2, desbloquea: ["ingles3"] },
+        { nombre: "Cálculo II", id: "calculo2", semestre: 2, desbloquea: ] },
+        { nombre: "Álgebra II", id: "algebra2", semestre: 2, desbloquea: [] },
+        { nombre: "Física II", id: "fisica2", semestre: 2, desbloquea: [] },
         { nombre: "Tópico de especialidad I", id: "topico1", semestre: 6, desbloquea: [] }
       ];
 
@@ -98,12 +102,13 @@
       function actualizarDesbloqueos() {
         ramos.forEach(ramo => {
           const div = document.getElementById(ramo.id);
-          const prerrequisitos = ramos.filter(r => r.desbloquea.includes(ramo.id));
+          const prerrequisitos = ramos.filter(r => r.desbloquea && r.desbloquea.includes(ramo.id));
           const desbloqueado = prerrequisitos.every(r => {
             const el = document.getElementById(r.id);
             return el && el.classList.contains("approved");
           });
-          if (prerrequisitos.length === 0 || desbloqueado) {
+
+          if (prerrequisitos.length === 0 || desbloqueado || ramo.semestre === 1) {
             div.classList.remove("locked");
           }
         });
@@ -113,13 +118,6 @@
         const el = document.getElementById(id);
         if (el.classList.contains("locked") || el.classList.contains("approved")) return;
         el.classList.add("approved");
-        const ramo = ramos.find(r => r.id === id);
-        if (ramo && ramo.desbloquea) {
-          ramo.desbloquea.forEach(idDesbloqueado => {
-            const desbloqueado = document.getElementById(idDesbloqueado);
-            if (desbloqueado) desbloqueado.classList.remove("locked");
-          });
-        }
         actualizarDesbloqueos();
       }
 
