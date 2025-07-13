@@ -153,7 +153,7 @@
         const requisitos = ramos.filter(r => r.desbloquea.includes(ramo.id));
         const aprobados = requisitos.every(r => document.getElementById(r.id).classList.contains("approved"));
         if (requisitos.length === 0 || aprobados) div.classList.remove("locked");
-      });
+      });			
     }
 
     function aprobarRamo(id) {
