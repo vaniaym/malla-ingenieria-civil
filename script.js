@@ -121,7 +121,7 @@
       { nombre: "Tópico de especialidad IV", id: "topico4", semestre: 10, desbloquea: ["titulo"] },
       { nombre: "Trabajo de titulación", id: "titulo", semestre: 11, desbloquea: [] },
       { nombre: "Electivo II", id: "electivo2", semestre: 8, desbloquea: [] },
-      { nombre: "Tópico de especialidad I", id: "topico1", semestre: 6, desbloquea: [] },
+      { nombre: "Tópico de especialidad I", id: "topico1", semestre: 6, desbloquea: [] }
     ];
 
     const container = document.getElementById("malla-container");
@@ -150,10 +150,12 @@
     function actualizarDesbloqueos() {
       ramos.forEach(ramo => {
         const div = document.getElementById(ramo.id);
-        const requisitos = ramos.filter(r => r.desbloquea.includes(ramo.id));
+        const requisitos = ramos.filter(r => r.desbloquea && r.desbloquea.includes(ramo.id));
         const aprobados = requisitos.every(r => document.getElementById(r.id).classList.contains("approved"));
-        if (requisitos.length === 0 || aprobados) div.classList.remove("locked");
-      });			
+        if (requisitos.length === 0 || aprobados) {
+          div.classList.remove("locked");
+        }
+      });
     }
 
     function aprobarRamo(id) {
@@ -174,4 +176,3 @@
   </script>
 </body>
 </html>
-      
