@@ -69,7 +69,7 @@ const ramos = [
     nombre: "Fundamentos de economía",
     id: "economia",
     semestre: 2,
-    desbloquea: []
+    desbloquea: [taller de diseño]
   },
 
   // Puedes seguir agregando aquí los siguientes ramos...
