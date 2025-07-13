@@ -65,9 +65,11 @@
   <script>
     document.addEventListener("DOMContentLoaded", function() {
       const ramos = [
-        // ... lista completa de ramos sin cambios
-" + 
-"        { nombre: "Tópico de especialidad I", id: "topico1", semestre: 6, desbloquea: [] }
+        { nombre: "Inglés I", id: "ingles1", semestre: 1, desbloquea: ["ingles2"] },
+        { nombre: "Cálculo I", id: "calculo1", semestre: 1, desbloquea: ["calculo2"] },
+        { nombre: "Álgebra I", id: "algebra1", semestre: 1, desbloquea: ["algebra2"] },
+        { nombre: "Física I", id: "fisica1", semestre: 1, desbloquea: ["fisica2"] },
+        { nombre: "Tópico de especialidad I", id: "topico1", semestre: 6, desbloquea: [] }
       ];
 
       const container = document.getElementById("malla-container");
